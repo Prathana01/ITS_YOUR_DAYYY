@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday 💖</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      height:100vh;
+      overflow:hidden;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg,#ff758c,#ff7eb3,#ffd3a5);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      position:relative;
+      color:white;
+    }
+
+    .container{
+      text-align:center;
+      z-index:2;
+      padding:20px;
+      max-width:800px;
+    }
+
+    h1{
+      font-size:70px;
+      animation: glow 2s infinite alternate;
+    }
+
+    .message{
+      margin-top:30px;
+      font-size:24px;
+      line-height:1.8;
+      background: rgba(255,255,255,0.15);
+      padding:20px;
+      border-radius:20px;
+      backdrop-filter: blur(5px);
+    }
+
+    @keyframes glow{
+      from{
+        text-shadow:0 0 10px white;
+      }
+      to{
+        text-shadow:0 0 25px yellow,0 0 40px orange;
+      }
+    }
+
+    /* POPUP */
+    .popup{
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      background:white;
+      color:#ff4081;
+      padding:30px;
+      border-radius:20px;
+      text-align:center;
+      z-index:100;
+      box-shadow:0 0 25px rgba(0,0,0,0.3);
+      animation: popup 0.6s ease;
+    }
+
+    .popup button{
+      margin-top:15px;
+      padding:12px 22px;
+      border:none;
+      border-radius:10px;
+      background:#ff4081;
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+    }
+
+    .hidden{
+      display:none;
+    }
+
+    @keyframes popup{
+      from{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(0.5);
+      }
+      to{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(1);
+      }
+    }
+
+    /* BALLOONS */
+    .balloon{
+      position:absolute;
+      bottom:-150px;
+      width:70px;
+      height:90px;
+      border-radius:50%;
+      opacity:0.8;
+      animation: float 10s linear infinite;
+    }
+
+    .balloon::before{
+      content:"";
+      position:absolute;
+      width:2px;
+      height:80px;
+      background:white;
+      top:90px;
+      left:35px;
+    }
+
+    @keyframes float{
+      0%{ transform:translateY(0) rotate(0deg); }
+      100%{ transform:translateY(-120vh) rotate(360deg); }
+    }
+
+    /* 3D CAKE */
+    .cake{
+      margin:40px auto;
+      position:relative;
+      width:220px;
+      height:200px;
+      transform-style:preserve-3d;
+      animation: rotateCake 6s linear infinite;
+    }
+
+    @keyframes rotateCake{
+      from{ transform: rotateY(0deg); }
+      to{ transform: rotateY(360deg); }
+    }
+
+    .layer{
+      position:absolute;
+      border-radius:15px;
+    }
+
+    .layer1{
+      width:220px;
+      height:60px;
+      background:#ffb347;
+      top:120px;
+    }
+
+    .layer2{
+      width:180px;
+      height:55px;
+      background:#ff69b4;
+      top:70px;
+      left:20px;
+    }
+
+    .layer3{
+      width:140px;
+      height:50px;
+      background:#fff0f5;
+      top:25px;
+      left:40px;
+    }
+
+    .candle{
+      position:absolute;
+      width:15px;
+      height:50px;
+      background:white;
+      top:-25px;
+      left:102px;
+      border-radius:5px;
+    }
+
+    .flame{
+      position:absolute;
+      width:20px;
+      height:20px;
+      background:yellow;
+      border-radius:50%;
+      top:-18px;
+      left:-2px;
+      animation:flicker 0.2s infinite alternate;
+    }
+
+    @keyframes flicker{
+      from{ transform:scale(1); }
+      to{ transform:scale(1.2); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- POPUP -->
+  <div class="popup" id="popup">
+    <h2>🎉 HAPPY BIRTHDAY 🎂</h2>
+    <button onclick="startBirthday()">Open</button>
+  </div>
+
+  <!-- BALLOONS -->
+  <div class="balloon" style="left:5%; background:red; animation-duration:8s;"></div>
+  <div class="balloon" style="left:18%; background:blue; animation-duration:10s;"></div>
+  <div class="balloon" style="left:32%; background:yellow; animation-duration:7s;"></div>
+  <div class="balloon" style="left:48%; background:green; animation-duration:9s;"></div>
+  <div class="balloon" style="left:65%; background:pink; animation-duration:11s;"></div>
+  <div class="balloon" style="left:82%; background:purple; animation-duration:8s;"></div>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+
+    <h1>Happy Birthday ❤️</h1>
+
+    <!-- CAKE -->
+    <div class="cake">
+      <div class="layer layer1"></div>
+      <div class="layer layer2"></div>
+      <div class="layer layer3"></div>
+
+      <div class="candle">
+        <div class="flame"></div>
+      </div>
+    </div>
+
+    <!-- MESSAGE -->
+    <div class="message">
+      Erm... don’t be shocked. You’ve done so much for me, and this is the least I could do for you.
+      I hope you enjoy your birthday, have an amazing time, and take care 💖
+    </div>
+
+  </div>
+
+  <script>
+    function startBirthday(){
+      document.getElementById("popup").classList.add("hidden");
+    }
+  </script>
+
+</body>
+</html>
